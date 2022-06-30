@@ -19,7 +19,7 @@ services:
       context: ./dockerfiles/web-app
       args:
         TZ: 'Asia/Tokyo'
-        COMPOSER_VERSION: 1
+        COMPOSER_VERSION: 2
     image: ot-mikami/template-laravel-01
     restart: always
     env_file:
@@ -30,6 +30,7 @@ services:
       - ./htdocs:/var/www/localhost/htdocs
       - ./services/web-app/log/apache2:/var/log/apache2
       - ./src:/usr/src
+    working_dir: /usr/src
     ports:
       - '8001:80'
       - '8000:8000'
@@ -39,3 +40,4 @@ services:
 volumes:
   postgres-data:
     driver: local
+  composer-vendor:
